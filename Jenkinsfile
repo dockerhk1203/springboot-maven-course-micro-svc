@@ -37,7 +37,7 @@ pipeline {
 
             steps {
 
-                sh 'docker build -t dockerhk1203/spring-petclinic:latest .'
+                sh 'docker build -t dockerhk1203/hk-repo-gitops:latest .'
 
             }
 
