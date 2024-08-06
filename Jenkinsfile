@@ -1,3 +1,10 @@
+stage('Docker Build') {
+agent any
+steps {
+sh 'docker build -t jagdish1983/spring-petclinic:latest .'
+}
+}
+
 pipeline{
 agent any
 tools{
@@ -21,7 +28,6 @@ script{
 withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarqube') {
 sh 'mvn sonar:sonar '
 }
-
 timeout(time: 1, unit: 'HOURS') {
 def qg = waitForQualityGate()
 if (qg.status != 'OK') {
@@ -31,5 +37,12 @@ error "Pipeline aborted due to quality gate failure: ${qg.status}"
 }
 }
 }
+stage('Docker Build') {
+agent any
+steps {
+sh 'docker build -t dockerhk1203/spring-petclinic:latest .'
 }
 }
+}
+}
+
