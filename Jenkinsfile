@@ -16,7 +16,6 @@ sh 'mvn clean package'
 }
 }
 stage('Docker Build') {
-agent any
 steps {
 sh 'docker build -t dockerhk1203/spring-petclinic:latest .'
 }
